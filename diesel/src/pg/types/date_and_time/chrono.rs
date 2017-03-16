@@ -77,7 +77,7 @@ impl FromSql<Timestamptz, Pg> for DateTime<UTC> {
 impl FromSql<Timestamptz, Pg> for DateTime<Local> {
     fn from_sql(bytes: Option<&[u8]>) -> Result<Self, Box<Error+Send+Sync>> {
         let naive_date_time = try!(<NaiveDateTime as FromSql<Timestamptz, Pg>>::from_sql(bytes));
-        let local_offset = Local.offset_from_utc_datetime(naive_date_time);
+        let local_offset = Local.offset_from_utc_datetime(&naive_date_time);
 
         Ok(DateTime::from_utc(naive_date_time, local_offset))
     }
