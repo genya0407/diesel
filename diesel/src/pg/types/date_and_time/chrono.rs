@@ -21,6 +21,7 @@ expression_impls! {
 queryable_impls! {
     Timestamptz -> NaiveDateTime,
     Timestamptz -> DateTime<UTC>,
+    Timestamptz -> DateTime<Local>,
 }
 
 // Postgres timestamps start from January 1st 2000.
